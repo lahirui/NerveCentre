@@ -8,6 +8,20 @@ namespace NerveCentre
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.Add(new StyleBundle("~/Assets/Styles/Site")
+                .Include(
+                 "~/Assets/css/animate.css",
+                 "~/Assets/css/style.css"
+                ));
+            bundles.Add(new ScriptBundle("~/Assets/Scripts/Sites")
+                .Include(
+                "~/Assets/js/vendor-all.min.js",
+                 "~/Assets/js/pcoded.min.js",
+                "~/Scripts/bootstrap.min.js"
+
+
+                 ));
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
