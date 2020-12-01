@@ -125,6 +125,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_DB\Factory.cs">
+      <DependentUpon>NerveCentre.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_DB\NerveCentre.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NerveCentre.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_DB\NerveCentre.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NerveCentre.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_DB\NerveCentre.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NerveCentre.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="App_DB\Resource.cs">
+      <DependentUpon>NerveCentre.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_DB\SetupDisplay.cs">
+      <DependentUpon>NerveCentre.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_DB\sysdiagram.cs">
+      <DependentUpon>NerveCentre.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_DB\Television.cs">
+      <DependentUpon>NerveCentre.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -135,6 +165,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_DB\NerveCentre.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NerveCentre.edmx</DependentUpon>
+      <LastGenOutput>NerveCentre.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_DB\NerveCentre.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NerveCentre.edmx</DependentUpon>
+      <LastGenOutput>NerveCentre.cs</LastGenOutput>
+    </Content>
     <Content Include="Assets\css\animate.css" />
     <Content Include="Assets\css\dataTables.semanticui.min.css" />
     <Content Include="Assets\css\jquery.dataTables.min.css" />
@@ -274,6 +314,13 @@
     <Content Include="Assets\images\Thumbs.db" />
     <Content Include="Assets\images\user\Thumbs.db" />
     <Content Include="Assets\images\widget\Thumbs.db" />
+    <EntityDeploy Include="App_DB\NerveCentre.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NerveCentre.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="App_DB\NerveCentre.edmx.diagram">
+      <DependentUpon>NerveCentre.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -306,7 +353,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="App_DB\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

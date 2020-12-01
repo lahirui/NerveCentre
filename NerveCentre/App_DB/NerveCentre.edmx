@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NerveCentreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Factories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FactoryCode" Type="varchar" MaxLength="50" />
+          <Property Name="FactoryName" Type="varbinary" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Resources">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResourceCode" Type="varchar" MaxLength="50" />
+          <Property Name="ResourceName" Type="varbinary" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SetupDisplay">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FactoryId" Type="int" />
+          <Property Name="TelevisionId" Type="int" />
+          <Property Name="ResourceId" Type="int" />
+          <Property Name="ResourcePath" Type="nvarchar(max)" />
+          <Property Name="Duration" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Televisions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FactoryId" Type="int" />
+          <Property Name="TVCode" Type="varbinary" MaxLength="50" />
+          <Property Name="TVName" Type="varchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_SetupDisplay_Factories">
+          <End Role="Factories" Type="Self.Factories" Multiplicity="0..1" />
+          <End Role="SetupDisplay" Type="Self.SetupDisplay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SetupDisplay">
+              <PropertyRef Name="FactoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SetupDisplay_Resources">
+          <End Role="Resources" Type="Self.Resources" Multiplicity="0..1" />
+          <End Role="SetupDisplay" Type="Self.SetupDisplay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resources">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SetupDisplay">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SetupDisplay_Televisions">
+          <End Role="Televisions" Type="Self.Televisions" Multiplicity="0..1" />
+          <End Role="SetupDisplay" Type="Self.SetupDisplay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Televisions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SetupDisplay">
+              <PropertyRef Name="TelevisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Televisions_Factories">
+          <End Role="Factories" Type="Self.Factories" Multiplicity="0..1" />
+          <End Role="Televisions" Type="Self.Televisions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Televisions">
+              <PropertyRef Name="FactoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NerveCentreModelStoreContainer">
+          <EntitySet Name="Factories" EntityType="Self.Factories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Resources" EntityType="Self.Resources" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SetupDisplay" EntityType="Self.SetupDisplay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Televisions" EntityType="Self.Televisions" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SetupDisplay_Factories" Association="Self.FK_SetupDisplay_Factories">
+            <End Role="Factories" EntitySet="Factories" />
+            <End Role="SetupDisplay" EntitySet="SetupDisplay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SetupDisplay_Resources" Association="Self.FK_SetupDisplay_Resources">
+            <End Role="Resources" EntitySet="Resources" />
+            <End Role="SetupDisplay" EntitySet="SetupDisplay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SetupDisplay_Televisions" Association="Self.FK_SetupDisplay_Televisions">
+            <End Role="Televisions" EntitySet="Televisions" />
+            <End Role="SetupDisplay" EntitySet="SetupDisplay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Televisions_Factories" Association="Self.FK_Televisions_Factories">
+            <End Role="Factories" EntitySet="Factories" />
+            <End Role="Televisions" EntitySet="Televisions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NerveCentreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Factory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FactoryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FactoryName" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SetupDisplays" Relationship="Self.FK_SetupDisplay_Factories" FromRole="Factories" ToRole="SetupDisplay" />
+          <NavigationProperty Name="Televisions" Relationship="Self.FK_Televisions_Factories" FromRole="Factories" ToRole="Televisions" />
+        </EntityType>
+        <EntityType Name="Resource">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResourceCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ResourceName" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SetupDisplays" Relationship="Self.FK_SetupDisplay_Resources" FromRole="Resources" ToRole="SetupDisplay" />
+        </EntityType>
+        <EntityType Name="SetupDisplay">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FactoryId" Type="Int32" />
+          <Property Name="TelevisionId" Type="Int32" />
+          <Property Name="ResourceId" Type="Int32" />
+          <Property Name="ResourcePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Duration" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Factory" Relationship="Self.FK_SetupDisplay_Factories" FromRole="SetupDisplay" ToRole="Factories" />
+          <NavigationProperty Name="Resource" Relationship="Self.FK_SetupDisplay_Resources" FromRole="SetupDisplay" ToRole="Resources" />
+          <NavigationProperty Name="Television" Relationship="Self.FK_SetupDisplay_Televisions" FromRole="SetupDisplay" ToRole="Televisions" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Television">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FactoryId" Type="Int32" />
+          <Property Name="TVCode" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="TVName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Factory" Relationship="Self.FK_Televisions_Factories" FromRole="Televisions" ToRole="Factories" />
+          <NavigationProperty Name="SetupDisplays" Relationship="Self.FK_SetupDisplay_Televisions" FromRole="Televisions" ToRole="SetupDisplay" />
+        </EntityType>
+        <Association Name="FK_SetupDisplay_Factories">
+          <End Role="Factories" Type="Self.Factory" Multiplicity="0..1" />
+          <End Role="SetupDisplay" Type="Self.SetupDisplay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SetupDisplay">
+              <PropertyRef Name="FactoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Televisions_Factories">
+          <End Role="Factories" Type="Self.Factory" Multiplicity="0..1" />
+          <End Role="Televisions" Type="Self.Television" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Televisions">
+              <PropertyRef Name="FactoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SetupDisplay_Resources">
+          <End Role="Resources" Type="Self.Resource" Multiplicity="0..1" />
+          <End Role="SetupDisplay" Type="Self.SetupDisplay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resources">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SetupDisplay">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SetupDisplay_Televisions">
+          <End Role="Televisions" Type="Self.Television" Multiplicity="0..1" />
+          <End Role="SetupDisplay" Type="Self.SetupDisplay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Televisions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SetupDisplay">
+              <PropertyRef Name="TelevisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NerveCentreEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Factories" EntityType="Self.Factory" />
+          <EntitySet Name="Resources" EntityType="Self.Resource" />
+          <EntitySet Name="SetupDisplays" EntityType="Self.SetupDisplay" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Televisions" EntityType="Self.Television" />
+          <AssociationSet Name="FK_SetupDisplay_Factories" Association="Self.FK_SetupDisplay_Factories">
+            <End Role="Factories" EntitySet="Factories" />
+            <End Role="SetupDisplay" EntitySet="SetupDisplays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Televisions_Factories" Association="Self.FK_Televisions_Factories">
+            <End Role="Factories" EntitySet="Factories" />
+            <End Role="Televisions" EntitySet="Televisions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SetupDisplay_Resources" Association="Self.FK_SetupDisplay_Resources">
+            <End Role="Resources" EntitySet="Resources" />
+            <End Role="SetupDisplay" EntitySet="SetupDisplays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SetupDisplay_Televisions" Association="Self.FK_SetupDisplay_Televisions">
+            <End Role="Televisions" EntitySet="Televisions" />
+            <End Role="SetupDisplay" EntitySet="SetupDisplays" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NerveCentreModelStoreContainer" CdmEntityContainer="NerveCentreEntities">
+          <EntitySetMapping Name="Factories">
+            <EntityTypeMapping TypeName="NerveCentreModel.Factory">
+              <MappingFragment StoreEntitySet="Factories">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FactoryCode" ColumnName="FactoryCode" />
+                <ScalarProperty Name="FactoryName" ColumnName="FactoryName" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Resources">
+            <EntityTypeMapping TypeName="NerveCentreModel.Resource">
+              <MappingFragment StoreEntitySet="Resources">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ResourceCode" ColumnName="ResourceCode" />
+                <ScalarProperty Name="ResourceName" ColumnName="ResourceName" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SetupDisplays">
+            <EntityTypeMapping TypeName="NerveCentreModel.SetupDisplay">
+              <MappingFragment StoreEntitySet="SetupDisplay">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FactoryId" ColumnName="FactoryId" />
+                <ScalarProperty Name="TelevisionId" ColumnName="TelevisionId" />
+                <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+                <ScalarProperty Name="ResourcePath" ColumnName="ResourcePath" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NerveCentreModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Televisions">
+            <EntityTypeMapping TypeName="NerveCentreModel.Television">
+              <MappingFragment StoreEntitySet="Televisions">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FactoryId" ColumnName="FactoryId" />
+                <ScalarProperty Name="TVCode" ColumnName="TVCode" />
+                <ScalarProperty Name="TVName" ColumnName="TVName" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

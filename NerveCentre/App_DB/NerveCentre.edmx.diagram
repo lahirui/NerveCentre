@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ebef6bd5b17c4d86ac921477f188862f" Name="Diagram1">
+        <EntityTypeShape EntityType="NerveCentreModel.Factory" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NerveCentreModel.Resource" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NerveCentreModel.SetupDisplay" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NerveCentreModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NerveCentreModel.Television" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="NerveCentreModel.FK_SetupDisplay_Factories" ManuallyRouted="false" />
+        <AssociationConnector Association="NerveCentreModel.FK_Televisions_Factories" ManuallyRouted="false" />
+        <AssociationConnector Association="NerveCentreModel.FK_SetupDisplay_Resources" ManuallyRouted="false" />
+        <AssociationConnector Association="NerveCentreModel.FK_SetupDisplay_Televisions" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
