@@ -1,0 +1,82 @@
+﻿@model List<NerveCentre.Models.DisplayValues>
+@{
+    ViewBag.Title = "Display";
+    Layout = "~/Views/Shared/_LayoutDisplay.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+@*<div id="ReturnedPath">
+    </div>*@
+
+<iframe id="rotator" src="@Url.Action("DisplayDefault","Displays")" class="responsive-iframe" onload="this.width=1200;this.height=900;"></iframe>
+
+@*<iframe src="~/WebForms/WIPChart.aspx" class="responsive-iframe" sandbox="allow-scripts" onload="this.width=1200;this.height=900;"></iframe>*@
+
+<script type="text/javascript">
+
+    RedirectAfterDelayFn();
+
+     function RedirectAfterDelayFn() {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("DisplayBoard", "Displays")',
+            success: function (data) {
+
+                var pathArray = [];
+
+                $.each(data, function (i, v) {
+                    pathArray.push([v.ModelResourcePath]);
+                })
+
+                var index = 1;
+                var el = document.getElementById("rotator");
+
+                setTimeout(function rotate() {
+
+                    if (index === pathArray.length) {
+                        index = 0;
+                    }
+
+                    el.src = pathArray[index];
+                    index = index + 1;
+                    setTimeout(rotate, 5000);
+
+                }, 5000);
+
+            }
+        })
+
+    }
+
+    //Stop Display
+    function stopRefresh() {
+
+        clearInterval(seconds = null);
+
+    }
+
+    //Re-Start Display
+    function startRefresh() {
+        location.href = "WesternProvince.aspx";
+    }
+</script>
+
+<style>
+    .container {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    }
+
+    /* Then style the iframe to fit in the container div with full height and width */
+    .responsive-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>

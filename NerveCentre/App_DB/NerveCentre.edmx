@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NerveCentreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NerveCentreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Factories">
           <Key>
             <PropertyRef Name="ID" />
@@ -12,6 +12,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FactoryCode" Type="varchar" MaxLength="50" />
           <Property Name="FactoryName" Type="varbinary" MaxLength="50" />
+          <Property Name="NewFactoryName" Type="varchar" MaxLength="50" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="DeletedDate" Type="datetime" />
         </EntityType>
@@ -22,6 +23,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ResourceCode" Type="varchar" MaxLength="50" />
           <Property Name="ResourceName" Type="varbinary" MaxLength="50" />
+          <Property Name="NewResourceName" Type="varchar" MaxLength="50" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="DeletedDate" Type="datetime" />
         </EntityType>
@@ -38,6 +40,7 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="SortOrder" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -55,6 +58,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FactoryId" Type="int" />
+          <Property Name="NewTVCode" Type="varchar" MaxLength="50" />
           <Property Name="TVCode" Type="varbinary" MaxLength="50" />
           <Property Name="TVName" Type="varchar" MaxLength="50" />
           <Property Name="IsDeleted" Type="bit" />
@@ -131,8 +135,7 @@
             <End Role="Televisions" EntitySet="Televisions" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NerveCentreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -147,6 +150,7 @@
           <Property Name="DeletedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="SetupDisplays" Relationship="Self.FK_SetupDisplay_Factories" FromRole="Factories" ToRole="SetupDisplay" />
           <NavigationProperty Name="Televisions" Relationship="Self.FK_Televisions_Factories" FromRole="Factories" ToRole="Televisions" />
+          <Property Name="NewFactoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Resource">
           <Key>
@@ -158,6 +162,7 @@
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="DeletedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="SetupDisplays" Relationship="Self.FK_SetupDisplay_Resources" FromRole="Resources" ToRole="SetupDisplay" />
+          <Property Name="NewResourceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SetupDisplay">
           <Key>
@@ -175,6 +180,7 @@
           <NavigationProperty Name="Factory" Relationship="Self.FK_SetupDisplay_Factories" FromRole="SetupDisplay" ToRole="Factories" />
           <NavigationProperty Name="Resource" Relationship="Self.FK_SetupDisplay_Resources" FromRole="SetupDisplay" ToRole="Resources" />
           <NavigationProperty Name="Television" Relationship="Self.FK_SetupDisplay_Televisions" FromRole="SetupDisplay" ToRole="Televisions" />
+          <Property Name="SortOrder" Type="Int32" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -198,6 +204,7 @@
           <Property Name="DeletedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Factory" Relationship="Self.FK_Televisions_Factories" FromRole="Televisions" ToRole="Factories" />
           <NavigationProperty Name="SetupDisplays" Relationship="Self.FK_SetupDisplay_Televisions" FromRole="Televisions" ToRole="SetupDisplay" />
+          <Property Name="NewTVCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_SetupDisplay_Factories">
           <End Role="Factories" Type="Self.Factory" Multiplicity="0..1" />
@@ -279,6 +286,7 @@
           <EntitySetMapping Name="Factories">
             <EntityTypeMapping TypeName="NerveCentreModel.Factory">
               <MappingFragment StoreEntitySet="Factories">
+                <ScalarProperty Name="NewFactoryName" ColumnName="NewFactoryName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FactoryCode" ColumnName="FactoryCode" />
                 <ScalarProperty Name="FactoryName" ColumnName="FactoryName" />
@@ -290,6 +298,7 @@
           <EntitySetMapping Name="Resources">
             <EntityTypeMapping TypeName="NerveCentreModel.Resource">
               <MappingFragment StoreEntitySet="Resources">
+                <ScalarProperty Name="NewResourceName" ColumnName="NewResourceName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ResourceCode" ColumnName="ResourceCode" />
                 <ScalarProperty Name="ResourceName" ColumnName="ResourceName" />
@@ -301,6 +310,7 @@
           <EntitySetMapping Name="SetupDisplays">
             <EntityTypeMapping TypeName="NerveCentreModel.SetupDisplay">
               <MappingFragment StoreEntitySet="SetupDisplay">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FactoryId" ColumnName="FactoryId" />
                 <ScalarProperty Name="TelevisionId" ColumnName="TelevisionId" />
@@ -327,6 +337,7 @@
           <EntitySetMapping Name="Televisions">
             <EntityTypeMapping TypeName="NerveCentreModel.Television">
               <MappingFragment StoreEntitySet="Televisions">
+                <ScalarProperty Name="NewTVCode" ColumnName="NewTVCode" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FactoryId" ColumnName="FactoryId" />
                 <ScalarProperty Name="TVCode" ColumnName="TVCode" />

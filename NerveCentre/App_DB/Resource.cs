@@ -25,6 +25,7 @@ namespace NerveCentre.App_DB
         public byte[] ResourceName { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public Nullable<System.DateTime> DeletedDate { get; set; }
+        public string NewResourceName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SetupDisplay> SetupDisplays { get; set; }

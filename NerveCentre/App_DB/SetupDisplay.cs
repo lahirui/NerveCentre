@@ -23,6 +23,7 @@ namespace NerveCentre.App_DB
         public Nullable<bool> IsActive { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public Nullable<System.DateTime> DeletedDate { get; set; }
+        public Nullable<int> SortOrder { get; set; }
     
         public virtual Factory Factory { get; set; }
         public virtual Resource Resource { get; set; }
