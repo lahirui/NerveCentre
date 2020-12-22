@@ -170,6 +170,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DisplayValues.cs" />
+    <Compile Include="Models\FactoryTVs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebForms\BlankForFrames.Master.cs">
       <DependentUpon>BlankForFrames.Master</DependentUpon>
@@ -377,6 +378,11 @@
     <Content Include="Views\Displays\DisplayDefault.cshtml" />
     <Content Include="WebForms\BlankForFrames.Master" />
     <Content Include="Views\Displays\_WIPKanbanChart.cshtml" />
+    <Content Include="Views\Displays\AuditDetails.cshtml" />
+    <Content Include="Views\Displays\VisionMision.cshtml" />
+    <Content Include="Views\Displays\Birthday.cshtml" />
+    <Content Include="Views\Displays\DisplayLogin.cshtml" />
+    <Content Include="Views\Displays\Cutting_Production.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

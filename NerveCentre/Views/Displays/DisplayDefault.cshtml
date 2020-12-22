@@ -1,12 +1,12 @@
 ﻿
-@*@{
+@{
                 ViewBag.Title = "DisplayDefault";
                 Layout = "~/Views/Shared/_LayoutDisplay.cshtml";
-}*@
-
-@{
-    Layout = null;
 }
+
+@*@{
+    Layout = null;
+}*@
 
 
 <!DOCTYPE html>
@@ -36,30 +36,32 @@
     <!-- vendor css -->
     <link href="~/Assets/css/style.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="~/Content/custombootstrap.css">
-    <link rel="stylesheet" href="~/Content/custombootstrap.min.css">
+    @*<link rel="stylesheet" href="~/Content/custombootstrap.css">
+    <link rel="stylesheet" href="~/Content/custombootstrap.min.css">*@
 
     <link href="~/Assets/fonts/feather/css/feather.css" rel="stylesheet" />
     <link href="~/Assets/fonts/datta/datta-icon.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="auth-wrapper">
-        <div class="auth-content">
-            <div class="auth-bg">
+    <div class="auth-wrapper text-center">
+        <div class="auth-content text-center" style="width:1200px">
+            <div class="auth-bg text-center">
                 <span class="r"></span>
                 <span class="r s"></span>
                 <span class="r s"></span>
                 <span class="r"></span>
             </div>
-            <div class="card">
-                <div class="card-body text-center">
-                    <div class="mb-4">
-                       
+            @*<div class="card text-center" >*@
+                @*<div class="card-body text-center" >*@
+                    <div class="mb-12">
+                        <h3 class="mb-12" style="font-family:'Futura Std'; font-size:80pt;">WELCOME</h3>
+                        <h3 class="mb-12" style="font-family:'Futura Std'; font-size:50pt">TO</h3>
+                        <h3 class="mb-12" style="font-family:'Futura Std'; font-size:80pt">NERVE CENTRE</h3>
                     </div>
-                    <h3 class="mb-4">NERVE CENTRE</h3>
                    
-                </div>
-            </div>
+
+                @*</div>*@
+            @*</div>*@
         </div>
     </div>
     <!-- Required Js -->
