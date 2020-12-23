@@ -34,8 +34,6 @@ namespace NerveCentre.Controllers
         }
 
         // POST: SetupDisplays/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,FactoryId,TelevisionId,ResourceId,ResourcePath,Duration,IsActive,IsDeleted,DeletedDate,SortOrder")] SetupDisplay setupDisplay)
@@ -104,8 +102,6 @@ namespace NerveCentre.Controllers
         }
 
         // POST: SetupDisplays/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,FactoryId,TelevisionId,ResourceId,ResourcePath,Duration,IsActive,IsDeleted,DeletedDate,SortOrder")] SetupDisplay setupDisplay)

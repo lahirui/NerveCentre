@@ -78,11 +78,13 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 <script>
-    $('#TelevisionId').select2({ placeholder: "Select Mesh" });
-    $('#ResourceId').select2({ placeholder: "Select Mesh" });
+    $('#TelevisionId').select2({ placeholder: "Select TV" });
+    $('#ResourceId').select2({ placeholder: "Select Type" });
 
     var invalidChars = ["-", "+", "e"];
     var inputBox1 = document.getElementById("SortOrder");
+    inputBox1.addEventListener("keydown", function (e) { if (invalidChars.includes(e.key)) { e.preventDefault(); } });
+    var inputBox1 = document.getElementById("Duration");
     inputBox1.addEventListener("keydown", function (e) { if (invalidChars.includes(e.key)) { e.preventDefault(); } });
 </script>
 <style>
