@@ -166,6 +166,8 @@
     <Compile Include="Classes\Common.cs" />
     <Compile Include="Controllers\DisplaysController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SetupDisplaysController.cs" />
+    <Compile Include="Controllers\TelevisionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -383,6 +385,15 @@
     <Content Include="Views\Displays\Birthday.cshtml" />
     <Content Include="Views\Displays\DisplayLogin.cshtml" />
     <Content Include="Views\Displays\Cutting_Production.cshtml" />
+    <Content Include="Views\Televisions\Create.cshtml" />
+    <Content Include="Views\Televisions\Delete.cshtml" />
+    <Content Include="Views\Televisions\Edit.cshtml" />
+    <Content Include="Views\Televisions\Index.cshtml" />
+    <Content Include="Views\Home\AdminLogin.cshtml" />
+    <Content Include="Views\SetupDisplays\Create.cshtml" />
+    <Content Include="Views\SetupDisplays\Delete.cshtml" />
+    <Content Include="Views\SetupDisplays\Edit.cshtml" />
+    <Content Include="Views\SetupDisplays\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

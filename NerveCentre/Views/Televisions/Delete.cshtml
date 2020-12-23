@@ -1,0 +1,54 @@
+﻿@model NerveCentre.App_DB.Television
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this Television?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayName("Factory")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Factory.FactoryCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("TV Code")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NewTVCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("TV Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TVName)
+        </dd>
+
+
+
+
+
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-primary" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

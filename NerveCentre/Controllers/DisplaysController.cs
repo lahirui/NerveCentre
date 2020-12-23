@@ -34,9 +34,13 @@ namespace NerveCentre.Controllers
 
         public ActionResult DisplayTrans(int? SelectedFactoryId, int? SelectedTVId)
         {
-            Session["FactoryId"] = SelectedFactoryId;
-            Session["TVID"] = SelectedTVId;
-            return RedirectToAction("Display");
+            if (SelectedFactoryId != null && SelectedTVId >-1)
+            {
+                Session["FactoryId"] = SelectedFactoryId;
+                Session["TVID"] = SelectedTVId;
+                //return RedirectToAction("Display");
+            }
+            return Json(new { SelectedFactoryId, SelectedTVId }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Display()

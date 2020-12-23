@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Log In</title>
+    <title>NERVE CENTRE</title>
     <script type="text/javascript">
         function preventBack() { window.history.forward(); }
         setTimeout("preventBack()", 0);
@@ -66,9 +66,11 @@
                                 @Html.DropDownList("FactoryId", (SelectList)ViewBag.FactoryId, "-- SELECT FACTORY--", htmlAttributes: new { @class = "form-control", @onChange = "GetTVs()" })
                             </div>
                             <div class="input-group mb-3">
-                                <select id="TelevisionID" class="form-control" name="TelevisionID"></select>
+                                <select id="TelevisionID" class="form-control" name="TelevisionID" onchange="clearlbl()">
+                                   <option value="0">SELECT TV</option>
+                                </select>
                             </div>
-                            <p style="color:red" class="text-center"> @ViewBag.Message</p><br>
+                            <label id="lblmessage" style="color:red; font-weight:bold"></label> <br />
                             <input class="btn btn-primary shadow-2 mb-4" type="submit" value="Login" name="Login" onclick="Login()">
                         </div>
                     </div>
@@ -81,16 +83,20 @@
 </html>
 
 <script>
+    function clearlbl() {
+        $('#lblmessage').html('')
+    }
     $('#FactoryId').select2({ placeholder: "SELECT FACTORY" });
     $('#TelevisionID').select2({ placeholder: "SELECT TV" });
     function GetTVs() {
+        $('#lblmessage').html('')
         var FactoryId = $("#FactoryId option:selected").val();
         $.ajax({
             type: 'POST',
             data: { FactoryId: FactoryId },
             url: '@Url.Action("GetTvList", "Displays")',
             success: function (result) {
-                var s;
+                var s = '<option value="-1">Select TV</option>';
                 for (var i = 0; i < result.length; i++) {
                      s += '<option value="' + result[i].Id + '">' + result[i].Name + '</option>'
                 }
@@ -101,14 +107,27 @@
     }
 
     function Login() {
+       
         var SelectedFactoryId = $("#FactoryId option:selected").val();
         var SelectedTVId = $("#TelevisionID option:selected").val();
         $.ajax({
             type: 'POST',
             data: { SelectedFactoryId: SelectedFactoryId, SelectedTVId: SelectedTVId },
             url: '@Url.Action("DisplayTrans", "Displays")',
-            success: function () {
-                window.location.href ='@Url.Action("Display","Displays")'
+            success: function (result) {
+                if (result.SelectedFactoryId > 0 && result.SelectedTVId>-1) {
+                    window.location.href = '@Url.Action("Display","Displays")'
+                }
+                else {
+                    if (result.SelectedFactoryId <= 0) {
+                        $('#lblmessage').html('Select a Factory')
+                    }
+                    else if (result.SelectedTVId <= -1) {
+                        $('#lblmessage').html('Select a TV')
+                    }
+                    
+                }
+                
             }
         });
     }
