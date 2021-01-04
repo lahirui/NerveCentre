@@ -65,6 +65,50 @@
 
     }
 
+    @*function RedirectAfterDelayFn() {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("DisplayBoard", "Displays")',
+            success: function (data) {
+
+                var pathArray = [];
+                var durationArray = [];
+                
+                $.each(data, function (i, v) {
+                    pathArray.push([[v.CombineResourcesResourcePath], [v.CombineResourcesResourceId]]);
+                })
+
+                pathArray.sort(function (a, b) { return a[0] - b[0]; });
+                
+                //alert(seconds);
+                alert(pathArray);
+                //$.each(data, function (i, w) {
+                //    durationArray.push([w.ModelDuration]);
+                //})
+
+                var index = 1;
+                var el = document.getElementById("rotator");
+
+                setTimeout(function rotate() {
+                   
+                    if (index === pathArray.length) {
+                        index = 0;
+                    }
+
+                    el.src = pathArray[index];
+                    //el.src = pathArray[];
+                    //el.src = pathArray.indexOf([v.CombineResourcesResourcePath]);
+                    alert(el.src);
+                    index = index + 1;
+                    setTimeout(rotate, seconds);
+
+                }, seconds);
+
+            }
+        })
+
+    }*@
+
     //Stop Display
     function stopRefresh() {
 

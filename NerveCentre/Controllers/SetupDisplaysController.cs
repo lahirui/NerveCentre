@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NerveCentre.App_DB;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using NerveCentre.App_DB;
 
 namespace NerveCentre.Controllers
 {
@@ -18,18 +16,16 @@ namespace NerveCentre.Controllers
         public ActionResult Index()
         {
             var AdminFactoryId = Convert.ToInt32(Session["AdminFactoryId"].ToString());
-            var setupDisplays = db.SetupDisplays.Include(s => s.Factory).Include(s => s.Resource).Include(s => s.Television).Where(s=>s.IsDeleted==false && s.FactoryId==AdminFactoryId).OrderBy(s=>s.Television.TVName).ThenBy(s=>s.SortOrder);
+            var setupDisplays = db.SetupDisplays.Include(s => s.Factory).Include(s => s.Resource).Include(s => s.Television).Where(s => s.IsDeleted == false && s.FactoryId == AdminFactoryId).OrderBy(s => s.Television.TVName).ThenBy(s => s.SortOrder);
             return View(setupDisplays.ToList());
         }
-
 
         // GET: SetupDisplays/Create
         public ActionResult Create()
         {
-
             var AdminFactoryId = Convert.ToInt32(Session["AdminFactoryId"].ToString());
-            ViewBag.ResourceId = new SelectList(db.Resources.Where(r=>r.IsDeleted==false).OrderBy(r=>r.ResourceCode), "ID", "ResourceCode");
-            ViewBag.TelevisionId = new SelectList(db.Televisions.Where(t=>t.IsDeleted==false && t.FactoryId==AdminFactoryId).OrderBy(t=>t.TVName), "ID", "TVName");
+            ViewBag.ResourceId = new SelectList(db.Resources.Where(r => r.IsDeleted == false).OrderBy(r => r.ResourceCode), "ID", "ResourceCode");
+            ViewBag.TelevisionId = new SelectList(db.Televisions.Where(t => t.IsDeleted == false && t.FactoryId == AdminFactoryId).OrderBy(t => t.TVName), "ID", "TVName");
             return View();
         }
 
@@ -41,34 +37,37 @@ namespace NerveCentre.Controllers
             var AdminFactoryId = Convert.ToInt32(Session["AdminFactoryId"].ToString());
             if (ModelState.IsValid)
             {
+                if (setupDisplay.ResourceId == 2 || setupDisplay.ResourceId == 3)
+                {
+                    var path = "";
 
-                var path = "";
-               
-                if (AdminFactoryId == 1)
-                {
-                    path = $@"E:\QualityPics\NerveCentre\CME\";
+                    if (AdminFactoryId == 1)
+                    {
+                        path = $@"E:\QualityPics\NerveCentre\CME\";
+                    }
+                    else if (AdminFactoryId == 2)
+                    {
+                        path = $@"E:\QualityPics\NerveCentre\CMGM\";
+                    }
+                    else if (AdminFactoryId == 3)
+                    {
+                        path = $@"E:\QualityPics\NerveCentre\CMW\";
+                    }
+                    else if (AdminFactoryId == 4)
+                    {
+                        path = $@"E:\QualityPics\NerveCentre\CMCD\";
+                    }
+                    else if (AdminFactoryId == 5)
+                    {
+                        path = $@"E:\QualityPics\NerveCentre\CMCG\";
+                    }
+                    else if (AdminFactoryId == 6)
+                    {
+                        path = $@"E:\QualityPics\NerveCentre\CMPK\";
+                    }
+                    setupDisplay.ResourcePath = path + setupDisplay.ResourcePath;
                 }
-                else if (AdminFactoryId == 2)
-                {
-                    path = $@"E:\QualityPics\NerveCentre\CMGM\";
-                }
-                else if (AdminFactoryId == 3)
-                {
-                    path = $@"E:\QualityPics\NerveCentre\CMW\";
-                }
-                else if (AdminFactoryId == 4)
-                {
-                    path = $@"E:\QualityPics\NerveCentre\CMCD\";
-                }
-                else if (AdminFactoryId == 5)
-                {
-                    path = $@"E:\QualityPics\NerveCentre\CMCG\";
-                }
-                else if (AdminFactoryId == 6)
-                {
-                    path = $@"E:\QualityPics\NerveCentre\CMPK\";
-                }
-                setupDisplay.ResourcePath = path + setupDisplay.ResourcePath;
+                
                 setupDisplay.FactoryId = AdminFactoryId;
                 setupDisplay.IsActive = true;
                 setupDisplay.IsDeleted = false;
@@ -77,7 +76,6 @@ namespace NerveCentre.Controllers
                 return RedirectToAction("Index");
             }
 
-           
             ViewBag.ResourceId = new SelectList(db.Resources.Where(r => r.IsDeleted == false).OrderBy(r => r.ResourceCode), "ID", "ResourceCode", setupDisplay.ResourceId);
             ViewBag.TelevisionId = new SelectList(db.Televisions.Where(t => t.IsDeleted == false && t.FactoryId == AdminFactoryId).OrderBy(t => t.TVName), "ID", "TVName", setupDisplay.TelevisionId);
             return View(setupDisplay);
@@ -109,7 +107,6 @@ namespace NerveCentre.Controllers
             var AdminFactoryId = Convert.ToInt32(Session["AdminFactoryId"].ToString());
             if (ModelState.IsValid)
             {
-              
                 setupDisplay.FactoryId = AdminFactoryId;
                 setupDisplay.IsDeleted = false;
                 db.Entry(setupDisplay).State = EntityState.Modified;
