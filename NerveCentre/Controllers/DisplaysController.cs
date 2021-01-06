@@ -284,5 +284,42 @@ namespace NerveCentre.Controllers
             var bytes = System.IO.File.ReadAllBytes(path);
             return File(bytes, "image/jpg");
         }
+
+        public ActionResult CriticalPath()
+        {
+            return View();
+        }
+
+        public ActionResult CriticalPathImage()
+        {
+            var path = "";
+
+            if (Session["FactoryId"].Equals(1))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CME\CriticalPath.JPG";
+            }
+            else if (Session["FactoryId"].Equals(2))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMGM\CriticalPath.JPG";
+            }
+            else if (Session["FactoryId"].Equals(3))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMW\CriticalPath.JPG";
+            }
+            else if (Session["FactoryId"].Equals(4))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMCD\CriticalPath.JPG";
+            }
+            else if (Session["FactoryId"].Equals(5))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMCG\CriticalPath.JPG";
+            }
+            else if (Session["FactoryId"].Equals(6))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMPK\CriticalPath.JPG";
+            }
+            var bytes = System.IO.File.ReadAllBytes(path);
+            return File(bytes, "image/jpg");
+        }
     }
 }

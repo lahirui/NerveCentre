@@ -396,6 +396,7 @@
     <Content Include="Views\SetupDisplays\Delete.cshtml" />
     <Content Include="Views\SetupDisplays\Edit.cshtml" />
     <Content Include="Views\SetupDisplays\Index.cshtml" />
+    <Content Include="Views\Displays\CriticalPath.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

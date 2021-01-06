@@ -1,18 +1,19 @@
 ﻿
 @{
-    ViewBag.Title = "ShowImage";
+    ViewBag.Title = "CriticalPath";
     Layout = "~/Views/Shared/_LayoutDisplay.cshtml";
 }
+
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <div id="divImage" style="width:100%; height:100%" class="text-center img-fluid">
-    <img src="" width="100" >
+
 </div>
 <script>
     myImagefunction();
     function myImagefunction() {
-        $('#divImage').append('<img id="TintImg" src="@Url.Action("AuditImage", "Displays")" class="img-fluid text-center" width="2350" height="1240" />');
+        $('#divImage').append('<img id="TintImg" src="@Url.Action("CriticalPathImage", "Displays")" class="img-fluid text-center" width="2350" height="1240"  />');
     }
-  
+
 </script>
 
