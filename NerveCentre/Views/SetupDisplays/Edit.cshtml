@@ -7,6 +7,7 @@
 <h2>EDIT</h2>
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 <link href="~/Assets/css/select2.min.css" rel="stylesheet" />
 <script src="~/Assets/js/select2.full.min.js" type="text/javascript"></script>
@@ -64,15 +65,56 @@
                     </div>
                 </div>
 
+                @*<div class="row">
+            <div class="col-md-4">
                 <div class="form-group">
-                    @Html.Label("In Active", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <div class="checkbox">
+                    @Html.Label("Deactivate", htmlAttributes: new { @class = "control-label col-md-6" })
+                    <div class="col-md-10 ">
+                        <div class="checkbox ">
                             @Html.RadioButtonFor(model => model.IsActive, "FALSE")
                             @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
+
+
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.Label("Activate", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.RadioButtonFor(model => model.IsActive, "TRUE")
+                            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IsActive, "Status", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                    <div class="col-md-3">
+                        <div class="panel panel-success">
+                            <div class="panel-heading"><b>ACTIVATE</b></div>
+                            <div class="checkbox, panel-body text-center">
+                                @Html.RadioButtonFor(model => model.IsActive, "TRUE")
+                                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading"><b>DEACTIVATE</b></div>
+                            <div class="checkbox, panel-body text-center">
+                                @Html.RadioButtonFor(model => model.IsActive, "FALSE")
+                                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
         </div>
