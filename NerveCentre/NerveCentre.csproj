@@ -398,6 +398,13 @@
     <Content Include="Views\SetupDisplays\Edit.cshtml" />
     <Content Include="Views\SetupDisplays\Index.cshtml" />
     <Content Include="Views\Displays\CriticalPath.cshtml" />
+    <Content Include="Views\Displays\MonthlySafetySummary.cshtml" />
+    <Content Include="Views\Displays\YearlySafetySummary.cshtml" />
+    <Content Include="Views\Displays\ProductsPic1.cshtml" />
+    <Content Include="Views\Displays\ProductsPic2.cshtml" />
+    <Content Include="Views\Displays\ProductsPic3.cshtml" />
+    <Content Include="Views\Displays\ProductsPic4.cshtml" />
+    <Content Include="Views\Displays\ProductsPic5.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

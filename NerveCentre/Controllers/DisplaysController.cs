@@ -321,5 +321,261 @@ namespace NerveCentre.Controllers
             var bytes = System.IO.File.ReadAllBytes(path);
             return File(bytes, "image/jpg");
         }
+
+        public ActionResult MonthlySafetySummary()
+        {
+            return View();
+        }
+
+        public ActionResult MonthlySafetySummaryImage()
+        {
+            var path = "";
+
+            if (Session["FactoryId"].Equals(1))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CME\MonthlySafetySummary.JPG";
+            }
+            else if (Session["FactoryId"].Equals(2))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMGM\MonthlySafetySummary.JPG";
+            }
+            else if (Session["FactoryId"].Equals(3))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMW\MonthlySafetySummary.JPG";
+            }
+            else if (Session["FactoryId"].Equals(4))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMCD\MonthlySafetySummary.JPG";
+            }
+            else if (Session["FactoryId"].Equals(5))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMCG\MonthlySafetySummary.JPG";
+            }
+            else if (Session["FactoryId"].Equals(6))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMPK\MonthlySafetySummary.JPG";
+            }
+            var bytes = System.IO.File.ReadAllBytes(path);
+            return File(bytes, "image/jpg");
+        }
+
+        public ActionResult YearlySafetySummary()
+        {
+            return View();
+        }
+
+        public ActionResult YearlySafetySummaryImage()
+        {
+            var path = "";
+
+            if (Session["FactoryId"].Equals(1))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CME\YearlySafetySummary.JPG";
+            }
+            else if (Session["FactoryId"].Equals(2))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMGM\YearlySafetySummary.JPG";
+            }
+            else if (Session["FactoryId"].Equals(3))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMW\YearlySafetySummary.JPG";
+            }
+            else if (Session["FactoryId"].Equals(4))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMCD\YearlySafetySummary.JPG";
+            }
+            else if (Session["FactoryId"].Equals(5))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMCG\YearlySafetySummary.JPG";
+            }
+            else if (Session["FactoryId"].Equals(6))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMPK\YearlySafetySummary.JPG";
+            }
+            var bytes = System.IO.File.ReadAllBytes(path);
+            return File(bytes, "image/jpg");
+        }
+
+        public ActionResult ProductsPic1()
+        {
+            return View();
+        }
+        public ActionResult ProductsPic1Image()
+        {
+            var path = "";
+
+            if (Session["FactoryId"].Equals(1))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CME\ProductsPic1.JPG";
+            }
+            else if (Session["FactoryId"].Equals(2))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMGM\ProductsPic1.JPG";
+            }
+            else if (Session["FactoryId"].Equals(3))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMW\ProductsPic1.JPG";
+            }
+            else if (Session["FactoryId"].Equals(4))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMCD\ProductsPic1.JPG";
+            }
+            else if (Session["FactoryId"].Equals(5))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMCG\ProductsPic1.JPG";
+            }
+            else if (Session["FactoryId"].Equals(6))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMPK\ProductsPic1.JPG";
+            }
+            var bytes = System.IO.File.ReadAllBytes(path);
+            return File(bytes, "image/jpg");
+        }
+
+        public ActionResult ProductsPic2()
+        {
+            return View();
+        }
+
+        public ActionResult ProductsPic2Image()
+        {
+            var path = "";
+
+            if (Session["FactoryId"].Equals(1))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CME\ProductsPic2.JPG";
+            }
+            else if (Session["FactoryId"].Equals(2))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMGM\ProductsPic2.JPG";
+            }
+            else if (Session["FactoryId"].Equals(3))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMW\ProductsPic2.JPG";
+            }
+            else if (Session["FactoryId"].Equals(4))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMCD\ProductsPic2.JPG";
+            }
+            else if (Session["FactoryId"].Equals(5))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMCG\ProductsPic2.JPG";
+            }
+            else if (Session["FactoryId"].Equals(6))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMPK\ProductsPic2.JPG";
+            }
+            var bytes = System.IO.File.ReadAllBytes(path);
+            return File(bytes, "image/jpg");
+        }
+
+        public ActionResult ProductsPic3()
+        {
+            return View();
+
+        }
+        public ActionResult ProductsPic3Image()
+        {
+            var path = "";
+
+            if (Session["FactoryId"].Equals(1))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CME\ProductsPic3.JPG";
+            }
+            else if (Session["FactoryId"].Equals(2))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMGM\ProductsPic3.JPG";
+            }
+            else if (Session["FactoryId"].Equals(3))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMW\ProductsPic3.JPG";
+            }
+            else if (Session["FactoryId"].Equals(4))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMCD\ProductsPic3.JPG";
+            }
+            else if (Session["FactoryId"].Equals(5))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMCG\ProductsPic3.JPG";
+            }
+            else if (Session["FactoryId"].Equals(6))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMPK\ProductsPic3.JPG";
+            }
+            var bytes = System.IO.File.ReadAllBytes(path);
+            return File(bytes, "image/jpg");
+        }
+
+        public ActionResult ProductsPic4()
+        {
+            return View();
+        }
+        public ActionResult ProductsPic4Image()
+        {
+            var path = "";
+
+            if (Session["FactoryId"].Equals(1))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CME\ProductsPic4.JPG";
+            }
+            else if (Session["FactoryId"].Equals(2))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMGM\ProductsPic4.JPG";
+            }
+            else if (Session["FactoryId"].Equals(3))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMW\ProductsPic4.JPG";
+            }
+            else if (Session["FactoryId"].Equals(4))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMCD\ProductsPic4.JPG";
+            }
+            else if (Session["FactoryId"].Equals(5))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMCG\ProductsPic4.JPG";
+            }
+            else if (Session["FactoryId"].Equals(6))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMPK\ProductsPic4.JPG";
+            }
+            var bytes = System.IO.File.ReadAllBytes(path);
+            return File(bytes, "image/jpg");
+        }
+
+        public ActionResult ProductsPic5()
+        {
+            return View();
+        }
+        public ActionResult ProductsPic5Image()
+        {
+            var path = "";
+
+            if (Session["FactoryId"].Equals(1))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CME\ProductsPic5.JPG";
+            }
+            else if (Session["FactoryId"].Equals(2))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMGM\ProductsPic5.JPG";
+            }
+            else if (Session["FactoryId"].Equals(3))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMW\ProductsPic5.JPG";
+            }
+            else if (Session["FactoryId"].Equals(4))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMCD\ProductsPic5.JPG";
+            }
+            else if (Session["FactoryId"].Equals(5))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMCG\ProductsPic5.JPG";
+            }
+            else if (Session["FactoryId"].Equals(6))
+            {
+                path = $@"E:\QualityPics\NerveCentre\CMPK\ProductsPic5.JPG";
+            }
+            var bytes = System.IO.File.ReadAllBytes(path);
+            return File(bytes, "image/jpg");
+        }
     }
 }

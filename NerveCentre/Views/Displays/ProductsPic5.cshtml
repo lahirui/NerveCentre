@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "ProductsPic5";
+    Layout = "~/Views/Shared/_LayoutDisplay.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<div id="divImage" style="width:100%; height:100%" class="text-center img-fluid">
+    <img src="" width="100">
+</div>
+<script>
+    myImagefunction();
+    function myImagefunction() {
+        $('#divImage').append('<img id="TintImg" src="@Url.Action("ProductsPic5Image", "Displays")" class="img-fluid text-center" width="1800" height="900" />');
+    }
+
+</script>
