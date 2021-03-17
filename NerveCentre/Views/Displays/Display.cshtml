@@ -5,6 +5,8 @@
 }
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<p id="demo"></p>
+
 <div class="row">
     <iframe id="rotator" src="@Url.Action("DisplayDefault", "Displays")" scrolling="auto" class="responsive-iframe" onload="this.width = 2340; this.height = 1200;" style="margin-top:-50px; margin-bottom:100px; overflow-x:hidden; overflow-y:hidden" frameborder="0"></iframe>
 </div>
@@ -27,12 +29,9 @@
             <button id="btnPause" type="button" class=" btn btn-primary glyphicon glyphicon-pause" style="width:40px; height:40px;" onclick="Pause()" />
         </div>
 
-
         <div class="col-md-1 text-center" style="padding-top: 270px; margin-left:40px">
             <button id="btnStart" type="button" class="btn btn-success glyphicon glyphicon-play" style="width:40px; height:40px;" onclick="Play()" />
         </div>
-
-
 
         <div class="col-md-1 text-center" style="padding-top: 270px; margin-left:40px">
             <button id="btnStart" type="button" class="btn btn-warning glyphicon glyphicon-forward" style="width:40px; height:40px;" onclick="Forward()" />
@@ -48,7 +47,10 @@
     var el = document.getElementById('rotator');
     var pathArray = [];
     var seconds = 30000;
+    var seconds = 5;
     var index = 0;
+    //var wrongUrl = "http://192.168.58.219:9096/Displays/undefined";
+    var wrongUrl = "http://localhost:64000/Displays/undefined";
 
     function RedirectAfterDelayFn() {
         $.ajax({
@@ -66,38 +68,146 @@
 
    //Start Display
     function rotateScreen() {
-        run = setInterval(rotate, seconds)
-        console.log('start')
+        try {
+            run = setInterval(rotate, seconds)
+            console.log('start')
+            }
+            catch (err) {
+                document.getElementById("demo").innerHTML = err.message;
+                RedirectAfterDelayFn();
+            }
+
     }
     function rotate() {
-        if (index === pathArray.length) {
-            index = 0;
-        }
-        el.src = pathArray[index];
+        try {
+            if (index === pathArray.length) {
+                index = 0;
+            }
+            el.src = pathArray[index];
 
-        index++;
+            index++;
+        }
+        catch (err) {
+            document.getElementById("demo").innerHTML = err.message;
+            RedirectAfterDelayFn();
+        }
+
     }
 
     //Pause Display
     function Pause() {
-        clearInterval(run);
-        console.log('pause')
+        try {
+            clearInterval(run);
+            console.log('pause')
+        }
+        catch (err) {
+            document.getElementById("demo").innerHTML = err.message;
+            RedirectAfterDelayFn();
+        }
+
     }
 
     //Re-Start Display
     function Play() {
-        run = setInterval(rotate, seconds);
-        console.log('play');
+        try {
+            run = setInterval(rotate, seconds);
+            console.log('play');
+        }
+        catch (err) {
+            document.getElementById("demo").innerHTML = err.message;
+            RedirectAfterDelayFn();
+        }
+
     }
 
+    //Previous display
     function Previous() {
-        var currentIndex = index--;
-        el.src = pathArray[currentIndex];
+        try {
+            if (el.src != wrongUrl) {
+                var currentIndex = index--;
+                el.src = pathArray[currentIndex];
+            }
+
+        }
+        catch (err) {
+            document.getElementById("demo").innerHTML = err.message;
+            RedirectAfterDelayFn();
+        }
+
     }
 
+    //Next Display
     function Forward() {
-        var currentIndex = index++;
-        el.src = pathArray[currentIndex];
+        try {
+            if (el.src != wrongUrl) {
+                var currentIndex = index++;
+                el.src = pathArray[currentIndex];
+            }
+
+        }
+        catch (err) {
+            document.getElementById("demo").innerHTML = err.message;
+            RedirectAfterDelayFn();
+        }
+
+        //var ind = index;
+        //alert(ind);
+
+        //$('#btnStart').submit(function (e) {
+        //    e.preventDefault();
+        //    alert('ss');
+        //    try {
+        //        var currentIndex = index++;
+        //        el.src = pathArray[currentIndex];
+        //    }
+        //    catch (err) {
+        //        document.getElementById("demo").innerHTML = err.message;
+        //        RedirectAfterDelayFn();
+        //    }
+        //});
+
+        //try {
+        //    var currentIndex = index++;
+        //    el.src = pathArray[currentIndex];
+        //}
+        //catch (err) {
+        //    //document.getElementById("demo").innerHTML = err.message;
+        //    RedirectAfterDelayFn();
+        //}
+
+        //var currentIndex = index++;
+        //if (currentIndex = null) {
+        //    currentIndex = 0;
+        //}
+        //if (currentIndex < pathArray.length) {
+        //    //alert('A');
+        //    //alert('Index'+currentIndex);
+        //    //alert('Array'+pathArray.length);
+        //    if (el.src === el.src) {
+        //        alert(el.src)
+        //        //alert('B');
+        //        if (el.src != wrongUrl) {
+        //           // alert('C');
+        //            el.src = pathArray[currentIndex];
+        //            //alert(el.src+1);
+        //        }
+        //        else {
+        //            //alert('A Else');
+        //            RedirectAfterDelayFn();
+        //        }
+
+        //    }
+        //    else {
+        //       // alert('B Else');
+        //        RedirectAfterDelayFn();
+        //    }
+        //}
+        //else {
+        //    //alert('C Else');
+        //    RedirectAfterDelayFn();
+        //}
+
+       // alert(el.src);
     }
 </script>
 
